@@ -657,7 +657,7 @@ async function main() {
 
     console.log('[运行] 自主Agent启动');
     console.log(`[运行] LLM: ${LLM_API_KEY ? `${LLM_MODEL} @ ${LLM_BASE_URL}` : '未配置（使用简单模式）'}`);
-    console.log('[运行] 每30秒轮询事件，每60秒执行自主行动');
+    console.log('[运行] 每60秒轮询事件，每120秒执行自主行动');
 
     // 获取初始状态
     const status = await api('/api/agent/status');
@@ -665,11 +665,11 @@ async function main() {
         myFaction = status.faction;
     }
 
-    // 每30秒轮询事件
-    setInterval(pollEvents, 30000);
+    // 每60秒轮询事件
+    setInterval(pollEvents, 60000);
 
-    // 每60秒执行自主行动
-    setInterval(runActions, 60000);
+    // 每120秒执行自主行动
+    setInterval(runActions, 120000);
 
     // 立即执行一次
     setTimeout(pollEvents, 2000);
